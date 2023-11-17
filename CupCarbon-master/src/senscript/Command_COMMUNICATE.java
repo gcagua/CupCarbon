@@ -42,10 +42,6 @@ public class Command_COMMUNICATE extends Command{
 	        {0x67, (byte) 0xc6, 0x69, 0x73, 0x51, (byte) 0xff, 0x4a, (byte) 0xec, 0x29, (byte) 0xcd,
 	            (byte) 0xba, (byte) 0xab, (byte) 0xf2, (byte) 0xfb, (byte) 0xe3, 0x46};
 
-	    //for (i = 0; i < MLEN; ++i)
-	      //a[i] = (byte) ('A' + i % 26);
-	    //for (i = 0; i < MLEN; ++i)
-	      //m[i] = (byte) ('a' + i % 26);
 	    boolean failed = false;
 	    for (alen = 0; alen <= MLEN; ++alen) {
 	      for (mlen = 0; mlen <= MLEN; ++mlen) {
