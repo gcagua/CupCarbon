@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry excluding="paho/" kind="src" path="src"/>
+	<classpathentry excluding="src/" kind="src" path=""/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="libs/jython/jython-standalone-2.7.0.jar"/>
+	<classpathentry kind="lib" path="libs/paho/paho.jar"/>
+	<classpathentry kind="lib" path="libs/java3d/vecmath.jar"/>
+	<classpathentry kind="lib" path="libs/openstreetmap/swingx-ws-2007_10_14.jar"/>
+	<classpathentry kind="lib" path="libs/openstreetmap/swingx.jar"/>
+	<classpathentry kind="lib" path="C:/Users/iot/Downloads/openjfx-21.0.1_windows-x64_bin-sdk/javafx-sdk-21.0.1/lib/javafx.base.jar"/>
+	<classpathentry kind="lib" path="C:/Users/iot/Downloads/openjfx-21.0.1_windows-x64_bin-sdk/javafx-sdk-21.0.1/lib/javafx.controls.jar"/>
+	<classpathentry kind="lib" path="C:/Users/iot/Downloads/openjfx-21.0.1_windows-x64_bin-sdk/javafx-sdk-21.0.1/lib/javafx.fxml.jar"/>
+	<classpathentry kind="lib" path="C:/Users/iot/Downloads/openjfx-21.0.1_windows-x64_bin-sdk/javafx-sdk-21.0.1/lib/javafx.graphics.jar"/>
+	<classpathentry kind="lib" path="C:/Users/iot/Downloads/openjfx-21.0.1_windows-x64_bin-sdk/javafx-sdk-21.0.1/lib/javafx.media.jar"/>
+	<classpathentry kind="lib" path="C:/Users/iot/Downloads/openjfx-21.0.1_windows-x64_bin-sdk/javafx-sdk-21.0.1/lib/javafx.swing.jar"/>
+	<classpathentry kind="lib" path="C:/Users/iot/Downloads/openjfx-21.0.1_windows-x64_bin-sdk/javafx-sdk-21.0.1/lib/javafx.web.jar"/>
+	<classpathentry kind="lib" path="C:/Users/iot/Downloads/openjfx-21.0.1_windows-x64_bin-sdk/javafx-sdk-21.0.1/lib/javafx-swt.jar"/>
+	<classpathentry kind="lib" path="C:/Users/iot/Downloads/javax.activation-api-1.2.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/iot/Desktop/javax.xml.bind.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
