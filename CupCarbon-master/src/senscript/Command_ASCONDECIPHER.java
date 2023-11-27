@@ -4,6 +4,7 @@ import java.util.Base64;
 
 import ascon.Ascon;
 import device.SensorNode;
+import map.MapLayer;
 
 public class Command_ASCONDECIPHER extends Command{
 	
@@ -39,7 +40,9 @@ public class Command_ASCONDECIPHER extends Command{
 		    }
 		    else {
 		    	System.out.printf("communication succeded\n");
-		        System.out.printf("text: " + new String(m_sub));
+		        System.out.printf("text: " + new String(a_sub)+ "\n");
+		        sensor.setMessage(new String(a_sub));
+				MapLayer.repaint();
 		    }
 	        return 0;
 		}
