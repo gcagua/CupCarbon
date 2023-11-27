@@ -1,16 +1,20 @@
 package senscript;
 
+import java.util.Base64;
+
 import ascon.Ascon;
+import device.DeviceList;
+import device.MultiChannels;
 import device.SensorNode;
 
-public class Command_COMMUNICATE extends Command{
+public class Command_ASCONCIPHER extends Command{
 	
 	public final static int MAXLEN = 65536;
 	protected String plainText;
 	protected String associatedData;
 	protected String to;
 
-	public Command_COMMUNICATE(SensorNode from, String plainText, String associatedData, String to){
+	public Command_ASCONCIPHER(SensorNode from, String plainText, String associatedData, String to){
 		// Revisar la estructura del send
 		this.sensor = from;
 		this.plainText = plainText;
@@ -21,7 +25,7 @@ public class Command_COMMUNICATE extends Command{
 	@Override
 	public double execute() {
 		// from.getScript().getVariableValue(arg[i]); para obtener los parámetros
-		int i;
+
 	    int MLEN = 1;
 	    
 	    byte [] bytesPlainText = plainText.getBytes();
@@ -42,24 +46,32 @@ public class Command_COMMUNICATE extends Command{
 	        {0x67, (byte) 0xc6, 0x69, 0x73, 0x51, (byte) 0xff, 0x4a, (byte) 0xec, 0x29, (byte) 0xcd,
 	            (byte) 0xba, (byte) 0xab, (byte) 0xf2, (byte) 0xfb, (byte) 0xe3, 0x46};
 
-	    boolean failed = false;
-	    for (alen = 0; alen <= MLEN; ++alen) {
-	      for (mlen = 0; mlen <= MLEN; ++mlen) {
+	    int destNodeId = Integer.valueOf(to);
+	    SensorNode rnode = DeviceList.getSensorNodeById(destNodeId);
+	    
+	    //for (alen = 0; alen <= MLEN; ++alen) {
+	    //  for (mlen = 0; mlen <= MLEN; ++mlen) {
+	    mlen = 0;
+	    alen = 0;
 	    	  
-	        clen = Ascon.crypto_aead_encrypt(c, clen, m, mlen, a, alen, nsec, npub, k);
-	        mlen = Ascon.crypto_aead_decrypt(m, mlen, nsec, c, clen, a, alen, npub, k);
-	        if (mlen != -1) {
-	        	
-	        } else
-	          System.out.printf("verification failed\n");
-	        System.out.printf("\n");
-	        failed = true;
-	      }
-	    }
-	    if (!failed) {
-	    	System.out.printf("communication succeded\n");
-	        System.out.printf("text: " + new String(m));
-	    }
+	    //cosas que se transmiten y cambian: c, m, a, clen, nsec // npub y k no cambian
+	    clen = Ascon.crypto_aead_encrypt(c, clen, m, mlen, a, alen, nsec, npub, k);
+	    if (rnode != null) {
+	    	if (sensor.canCommunicateWith(rnode)) {
+	    		 String clen_text = Integer.toString(clen);
+	    		 String c_text = Base64.getEncoder().encodeToString(c);
+	    		 String m_text = Base64.getEncoder().encodeToString(m);
+	    		 String a_text = Base64.getEncoder().encodeToString(a);
+	    		 String nsec_text = Base64.getEncoder().encodeToString(nsec);
+	    		 String npub_text = Base64.getEncoder().encodeToString(npub);
+	    		 String k_text = Base64.getEncoder().encodeToString(k);
+	    		 
+	    		 String text2 = m_text + "-" + "0" + "-" + nsec_text + "-" + c_text + "-" + clen_text + "-" + a_text + "-" + "0" + "-" + npub_text + "-" + k_text;
+	    	        
+	    		MultiChannels.addPacketEvent(0, text2, sensor, rnode);
+		    }
+		}
+	 
 	    return 0;
 	 }
 

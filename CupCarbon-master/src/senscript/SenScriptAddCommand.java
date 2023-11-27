@@ -58,9 +58,12 @@ public final class SenScriptAddCommand {
 		
 		Command command = null;
 		
-		//TODO revisar como ingresar plain text e informacion asociada
-		if (inst[0].toLowerCase().equals("communicate")) {
-			command = new Command_COMMUNICATE(sensorNode, inst[1], inst[2], inst[3]); 
+		if (inst[0].toLowerCase().equals("asconcipher")) {
+			command = new Command_ASCONCIPHER(sensorNode, inst[1], inst[2], inst[3]); 
+		}
+		
+		if (inst[0].toLowerCase().equals("ascondecipher")) {
+			command = new Command_ASCONDECIPHER(sensorNode, inst[1], inst[2]);
 		}
 		
 		if (inst[0].toLowerCase().equals("end")) {
