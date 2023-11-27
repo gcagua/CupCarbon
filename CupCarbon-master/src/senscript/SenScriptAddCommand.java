@@ -2,6 +2,7 @@ package senscript;
 
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Stack;
 
 import device.SensorNode;
@@ -45,6 +46,10 @@ public final class SenScriptAddCommand {
 		return r;
 	}
 	
+	public static String[] arg_split_cipher(String v) {
+		return v.split("#");
+	}
+	
 	public static void addCommand(String instStr, SensorNode sensorNode, SenScript script) {
 		if(instStr.trim().equals("")) return;
 		instStr = detectKeyWord(instStr);
@@ -59,7 +64,8 @@ public final class SenScriptAddCommand {
 		Command command = null;
 		
 		if (inst[0].toLowerCase().equals("asconcipher")) {
-			command = new Command_ASCONCIPHER(sensorNode, inst[1], inst[2], inst[3]); 
+			String[] line = arg_split_cipher(instStr);
+			command = new Command_ASCONCIPHER(sensorNode, line[1], line[3], line[4].trim()); 
 		}
 		
 		if (inst[0].toLowerCase().equals("ascondecipher")) {
